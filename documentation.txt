@@ -1,0 +1,26 @@
+Hello and welcome to SoyniblerBot's doc.
+
+Make a python venv with the name of .venv
+
+    $ python -m venv .venv
+
+    and activate it by running
+
+    $ source .venv/bin/activate
+
+Then install requirements from le requirements.txt using
+
+    $ pip install -r requirements.txt
+
+
+Before YOU can run this bot YOU need to create "config.json" file with the entry...
+
+    {
+    "token": "put your token inside these funny little quotation marks"
+    }
+
+Then you should be able to run this bad boy with
+
+    $ python soyniblerbot.py
+
+voilà, summa summarum, lorem ipsum, Metallica - Entersandman, carpe diem and memento mori you are done. Good Saab now go have fun with your friends.
