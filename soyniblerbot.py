@@ -95,18 +95,23 @@ async def play(ctx, *, url: str):
 
     #if bot is already playing epic memes on a channel then skip this, otherwise it starts blasting
     if not ctx.voice_client.is_playing():
-            await playQue(ctx)
+        await startQueue(ctx)
 
+async def startQueue(ctx):
+    if songque:
+        await playQue(ctx)
+    else:
+        currentlyplaying.song = ""
 
 async def playQue(ctx):
     if songque:
         currentlyplaying.song = songque[0].songtitle
+        source = discord.FFmpegPCMAudio((songque[0].songurl), before_options="-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5")
+        ctx.voice_client.play(source, after=lambda e: asyncio.run_coroutine_threadsafe(startQueue(ctx), ctx.bot.loop))
         embed = discord.Embed(title="Now playing", description=currentlyplaying.song, color=discord.Color.red())
         await ctx.send(embed=embed)
-        source = discord.FFmpegPCMAudio((songque[0].songurl), before_options="-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5")
-        ctx.voice_client.play(source)
         songque.pop(0)
-    if not songque and not ctx.voice_client.is_playing():
+    else:
         currentlyplaying.song = ""
 
 #disintegrates the currently playing song and then continues on the queue
