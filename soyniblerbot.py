@@ -100,16 +100,14 @@ async def play(ctx, *, url: str):
 async def startQueue(ctx):
     if songque:
         await playQue(ctx)
-    else:
-        currentlyplaying.song = ""
+        embed = discord.Embed(title="Now playing", description=currentlyplaying.song, color=discord.Color.red())
+        await ctx.send(embed=embed)
 
 async def playQue(ctx):
     if songque:
         currentlyplaying.song = songque[0].songtitle
         source = discord.FFmpegPCMAudio((songque[0].songurl), before_options="-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5")
         ctx.voice_client.play(source, after=lambda e: asyncio.run_coroutine_threadsafe(startQueue(ctx), ctx.bot.loop))
-        embed = discord.Embed(title="Now playing", description=currentlyplaying.song, color=discord.Color.red())
-        await ctx.send(embed=embed)
         songque.pop(0)
     else:
         currentlyplaying.song = ""
@@ -121,7 +119,7 @@ async def skip(ctx):
         ctx.voice_client.stop()
         await playQue(ctx)
     else:
-        await ctx.send("skip on deez baalls :DDDDD")
+        await ctx.send("ha skip on deez baalls :DDDDD")
 
 #check how many songs are in the queue currently
 @bot.command()
@@ -163,7 +161,7 @@ async def you(ctx):
 
 @bot.command()
 async def naaduz(ctx):
-    return
+    await ctx.send("https://cdn.discordapp.com/emojis/707336720227631122.webp")
 
 @bot.event
 async def on_command_error(ctx, error):
