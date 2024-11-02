@@ -27,8 +27,6 @@ class Song:
         self.songtitle = songtitle
         self.songurl = songurl
 
-song = Song("", "")
-
 class CurrentlyPlaying:
     def __init__(self, song):
         self.song = song
@@ -85,6 +83,8 @@ async def play(ctx, *, url: str):
     ydl_opts = { "format": "bestaudio", "quiet": True, "no_warnings": True, "extract_flat": True, }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         info = ydl.extract_info(saneUrl, download=False)
+
+    song = Song("", "")
 
     #this gives out an error for no reason, but it works and slaps the bees knees anyway...
     song.songtitle = info['title']
