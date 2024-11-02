@@ -107,7 +107,7 @@ async def playQue(ctx):
     if songque:
         currentlyplaying.song = songque[0].songtitle
         source = discord.FFmpegPCMAudio((songque[0].songurl), before_options="-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5")
-        ctx.voice_client.play(source, after=lambda e: asyncio.run_coroutine_threadsafe(startQueue(ctx), ctx.bot.loop))
+        ctx.voice_client.play(source, bitrate=128, after=lambda e: asyncio.run_coroutine_threadsafe(startQueue(ctx), ctx.bot.loop))
         songque.pop(0)
     else:
         currentlyplaying.song = ""
