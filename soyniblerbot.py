@@ -117,7 +117,6 @@ async def playQue(ctx):
 async def skip(ctx):
     if ctx.author.guild_permissions.administrator:
         ctx.voice_client.stop()
-        await playQue(ctx)
     else:
         await ctx.send("ha skip on deez baalls :DDDDD")
 
