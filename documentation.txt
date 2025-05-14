@@ -23,4 +23,4 @@ Then you should be able to run this bad boy with
 
     $ python soyniblerbot.py
 
-voilà, summa summarum, lorem ipsum, Metallica - Entersandman, carpe diem and memento mori you are done. Good Saab now go have fun with your friends.
+voilà, summa summarum, lorem ipsum, Metallica - Enter sandman, carpe diem and memento mori you are done. Good Saab now go have fun with your friends.
