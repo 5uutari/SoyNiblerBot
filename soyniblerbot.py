@@ -66,7 +66,7 @@ async def leave(ctx):
 async def play(ctx, *, url: str):
     #a shame ritual for not inviting bot to a channel. There are many of these litered around...
     if ctx.voice_client is None:
-        embed = discord.Embed(title="*hides in the Ogre's outhouse*", description="it feels cozy in here and i don't have to look at you...")
+        embed = discord.Embed(title="*hides in the Ogre's outhouse*", description="Oh wow, you actually managed to make the bot hide in the Ogre’s outhouse? Impressive! Maybe next time try summoning the poor thing into the channel before bossing it around with commands. Or does the thought of basic etiquette seem too hard? Come on, give the bot a chance to show up before you start ordering it around like a clueless blockhead lost in the swamp!")
         embed.set_image(url="https://images.squarespace-cdn.com/content/v1/56e0c6ac746fb92b0e77f4d4/1567556573339-40FP9W1U6IBPUU07SWC5/Shrek-2-1920x1080.jpg")
         await ctx.send(embed=embed)
         return
@@ -103,9 +103,6 @@ async def play(ctx, *, url: str):
     if songque and ctx.voice_client.is_playing():
         embed = discord.Embed(title="Added to queue", description=song.songtitle, color=discord.Color.red())
         await ctx.send(embed=embed)
-
-    print(f"added {song.songtitle} to queue")
-    print(f"song is {song.songduration} seconds long wow song long")
 
     #if bot is already playing epic memes on a channel then skip this, otherwise it starts blasting
     if not ctx.voice_client.is_playing():
